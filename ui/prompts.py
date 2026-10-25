@@ -11,7 +11,7 @@ def ask_text(label, default=None):
     """Ask for a non-empty text. If a default exists, pressing Enter uses it."""
     suffix = f" [{default}]" if default else ""
     while True:
-        value = input(f"{label}{suffix}: ").strip()
+        value = input(f"{label}{suffix}: ").strip() # Reads what the user types and removes extra spaces.
         if value:
             return value
         if default:

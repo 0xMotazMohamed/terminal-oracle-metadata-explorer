@@ -24,13 +24,13 @@ def show_menu(title, items, last_label):
     """
     print()
     print(title)
-    for number, item in enumerate(items, start=1):
+    for number, item in enumerate(items, start=1): # Produces pairs (1, "Tables"), (2, "Views"), ...
         print(f"{number}. {item}")
 
-    last_number = len(items) + 1
-    print(f"{last_number}. {last_label}")
+    last_number = len(items) + 1 # Last option (Exit or Back) is numbered len(items) + 1
+    print(f"{last_number}. {last_label}") 
 
-    choice = prompts.ask_number(1, last_number)
+    choice = prompts.ask_number(1, last_number) # Asks for a valid number in range
     if choice == last_number:
         return None
     return choice - 1

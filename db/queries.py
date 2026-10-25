@@ -10,15 +10,15 @@ Naming:  LIST_*  -> gives the names of objects (first menu level)
 We use USER_* views = objects owned by the logged-in user (no extra privileges).
 """
 
-# LISTS 
+# LISTS - Menu level 2 (the list of objects)
 LIST_TABLES = "SELECT table_name FROM user_tables ORDER BY table_name"
 LIST_VIEWS = "SELECT view_name FROM user_views ORDER BY view_name"
 LIST_SEQUENCES = "SELECT sequence_name FROM user_sequences ORDER BY sequence_name"
 LIST_CONSTRAINTS = "SELECT constraint_name FROM user_constraints ORDER BY constraint_name"
 LIST_USERS = "SELECT username FROM all_users ORDER BY username"
 
-#  TABLE metadata 
 
+#  TABLE metadata - Menu level 3 (details of one object)
 # USER_TAB_COLUMNS (describes the columns of views).
 COLUMNS = """
     SELECT column_id, column_name, data_type, data_length,
@@ -28,6 +28,7 @@ COLUMNS = """
     ORDER  BY column_id
 """
 
+# USER_CONSTRAINTS - Constraints (PK, FK, check, unique)
 TABLE_CONSTRAINTS = """
     SELECT constraint_name, constraint_type, search_condition,
            r_constraint_name, status
@@ -36,6 +37,7 @@ TABLE_CONSTRAINTS = """
     ORDER  BY constraint_type, constraint_name
 """
 
+# USER_INDEXES	Indexes
 TABLE_INDEXES = """
     SELECT index_name, index_type, uniqueness, status
     FROM   user_indexes
@@ -43,6 +45,7 @@ TABLE_INDEXES = """
     ORDER  BY index_name
 """
 
+# USER_IND_COLUMNS	Which columns each index covers
 TABLE_INDEX_COLUMNS = """
     SELECT index_name, column_position, column_name
     FROM   user_ind_columns
@@ -54,8 +57,6 @@ TABLE_INDEX_COLUMNS = """
 
 #  VIEW metadata 
 VIEW_DEFINITION = "SELECT text FROM user_views WHERE view_name = :name"
-
-
 
 #  SEQUENCE metadata 
 SEQUENCE_PROPERTIES = """

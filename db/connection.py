@@ -1,7 +1,6 @@
 """
 db/connection.py
 
-
 ONLY file that talks to Oracle directly.
 Have two jobs:
   1. connect()   -> open a connection with the user's credentials
@@ -45,8 +44,8 @@ def run_query(connection, sql, params=None):
     - params  : dict of bind variables, e.g. {'name': 'EMPLOYEES'}
                 (bind variables are safe: user input is never glued into SQL)
     """
-    with connection.cursor() as cursor:
-        cursor.execute(sql, params or {})
+    with connection.cursor() as cursor: # cursor, (the object that sends SQL and reads results).
+        cursor.execute(sql, params or {}) # params is a dict like {"name": "EMPLOYEES"} that fills the :name placeholder.
         columns = [col[0] for col in cursor.description]
         rows = cursor.fetchmany(config.MAX_ROWS)
     return columns, rows

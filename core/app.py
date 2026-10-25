@@ -1,11 +1,10 @@
 """
 core/app.py
------------
+
 The FLOW of the program. It connects the other layers but contains
 no SQL text and no print-formatting logic.
 
 The flow is three nested loops (each has a "Back" option):
-
     login
       └─ main_menu_loop      choose an object TYPE      (Exit ends the app)
            └─ browse_objects     choose one OBJECT      (Back -> main menu)

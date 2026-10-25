@@ -11,8 +11,9 @@ def _format_cell(value):
     """Make one value printable: None -> '-', one line only, not too wide."""
     if value is None:
         return "-"
-    text = str(value).replace("\r", " ").replace("\n", " ").strip()
-    if len(text) > config.MAX_CELL_WIDTH:
+    text = str(value).replace("\r", " ").replace("\n", " ").strip() # converts numbers and dates to text
+    
+    if len(text) > config.MAX_CELL_WIDTH: # Validation for Text longer is cut.
         text = text[: config.MAX_CELL_WIDTH - 3] + "..."
     return text
 
@@ -23,7 +24,7 @@ def print_table(columns, rows):
         print("\nNo data found.")
         return
 
-    table = [[_format_cell(value) for value in row] for row in rows]
+    table = [[ _format_cell(value) for value in row] for row in rows]
 
     # Each column is as wide as its longest cell (or its header).
     widths = [len(name) for name in columns]
